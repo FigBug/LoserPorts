@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="JPnRUR" name="SimpleVerb" projectType="audioplug" version="1.0.0"
-              bundleIdentifier="com.socalabs.SimpleVerb" includeBinaryInAppConfig="1"
+<JUCERPROJECT id="JPnRUR" name="StereoProcessor" projectType="audioplug" version="1.0.0"
+              bundleIdentifier="com.socalabs.StereoProcessor" includeBinaryInAppConfig="1"
               buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
-              buildAAX="0" pluginName="SimpleVerb" pluginDesc="SimpleVerb"
-              pluginManufacturer="SocaLabs" pluginManufacturerCode="Soca" pluginCode="Lvrb"
+              buildAAX="0" pluginName="StereoProcessor" pluginDesc="StereoProcessor"
+              pluginManufacturer="SocaLabs" pluginManufacturerCode="Soca" pluginCode="Lste"
               pluginChannelConfigs="{2,2}" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
-              pluginAUExportPrefix="SimpleVerbAU" aaxIdentifier="com.socalabs.SimpleVerb"
+              pluginAUExportPrefix="StereoProcessorAU" aaxIdentifier="com.socalabs.StereoProcessor"
               pluginAAXCategory="8" companyName="SocaLabs" companyWebsite="www.socalabs.com"
               companyEmail="info@socalabs.com" displaySplashScreen="1" reportAppUsage="0"
               splashScreenColour="Dark" buildStandalone="1" enableIAA="0" cppLanguageStandard="17"
@@ -15,9 +15,9 @@
               pluginAUMainType="'aufx'" pluginVSTCategory="kPlugCategEffect"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
               pluginAAXDisableMultiMono="0" jucerFormatVersion="1" defines="JUCE_MODAL_LOOPS_PERMITTED=1&#10;JUCE_DISPLAY_SPLASH_SCREEN=0"
-              lv2Uri="https://socalabs.com/simpleverb/" useAppConfig="0" addUsingNamespaceToJuceHeader="0"
-              pluginVST3Category="Reverb">
-  <MAINGROUP id="dPRjsF" name="SimpleVerb">
+              lv2Uri="https://socalabs.com/stereoprocessor/" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" pluginVST3Category="Stereo">
+  <MAINGROUP id="dPRjsF" name="StereoProcessor">
     <GROUP id="{EE796482-0D02-0052-80F4-B1FE6CE0D41A}" name="Source">
       <FILE id="iEbZ9q" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
@@ -32,10 +32,10 @@
     <XCODE_MAC targetFolder="Builds/MacOSX" hardenedRuntime="1" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4"
                extraDefs="JUCE_COREGRAPHICS_DRAW_ASYNC=1">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SimpleVerb"
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="StereoProcessor"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
                        recommendedWarnings="LLVM" macOSDeploymentTarget="10.9"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="SimpleVerb"
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="StereoProcessor"
                        cppLanguageStandard="c++14" osxCompatibility="10.9 SDK" enablePluginBinaryCopyStep="1"
                        osxArchitecture="64BitIntel" recommendedWarnings="LLVM" linkTimeOptimisation="0"
                        macOSDeploymentTarget="10.9"/>
@@ -65,18 +65,18 @@
     <VS2022 targetFolder="Builds/VisualStudio2022" vstLegacyFolder="../../modules/plugin_sdk/vstsdk2.4">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
-                       isDebug="1" optimisation="1" targetName="SimpleVerb" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       isDebug="1" optimisation="1" targetName="StereoProcessor" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        useRuntimeLibDLL="0" vstBinaryLocation="c:\program files\vstplugins"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="Win32"
-                       isDebug="0" optimisation="3" targetName="SimpleVerb" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
+                       isDebug="0" optimisation="3" targetName="StereoProcessor" postbuildCommand="copy /Y &quot;$(OutDir)\$(TargetFileName)&quot; &quot;C:\Program Files (x86)\VSTPlugins&quot;"
                        debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
                        linkTimeOptimisation="0" useRuntimeLibDLL="0"/>
         <CONFIGURATION name="Debug64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="1" optimisation="1" targetName="SimpleVerb" debugInformationFormat="ProgramDatabase"
+                       isDebug="1" optimisation="1" targetName="StereoProcessor" debugInformationFormat="ProgramDatabase"
                        enablePluginBinaryCopyStep="0" useRuntimeLibDLL="0"/>
         <CONFIGURATION name="Release64" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="0" optimisation="3" targetName="SimpleVerb" debugInformationFormat="ProgramDatabase"
+                       isDebug="0" optimisation="3" targetName="StereoProcessor" debugInformationFormat="ProgramDatabase"
                        enablePluginBinaryCopyStep="0" linkTimeOptimisation="0" useRuntimeLibDLL="0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
