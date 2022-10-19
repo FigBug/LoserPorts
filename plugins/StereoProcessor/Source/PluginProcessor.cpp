@@ -12,12 +12,12 @@ AudioProcessor::AudioProcessor()
 {
     width1      = addExtParam ("width1",    "Width",     "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
     center1     = addExtParam ("center1",   "Center",    "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
-    pan1    	= addExtParam ("pan1",  	"Pan", 		 "", "%",   {  -1.0f,   1.0f, 0.0f, 1.0f}, 0.0f, 0.1f, percentTextFunction);
+    pan1        = addExtParam ("pan1",      "Pan",       "", "%",   {  -1.0f,   1.0f, 0.0f, 1.0f}, 0.0f, 0.1f, percentTextFunction);
     rotation    = addExtParam ("rotation",  "Rotation",  "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
     pan2        = addExtParam ("pan2",      "Pan",       "", "%",   {  -1.0f,   1.0f, 0.0f, 1.0f}, 0.0f, 0.1f, percentTextFunction);
     center2     = addExtParam ("center2",   "Center",    "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
     width2      = addExtParam ("width2",    "Width",     "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
-	output		= addExtParam ("output",    "Output",    "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
+    output      = addExtParam ("output",    "Output",    "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
 }
 
 AudioProcessor::~AudioProcessor()
@@ -45,15 +45,15 @@ void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBu
     if (isSmoothing())
     {
         int pos = 0;
-        
+
         while (pos < numSamples)
         {
             auto workBuffer = gin::sliceBuffer (buffer, pos, 1);
-            
+
             proc.setParameters (width1->getProcValue (numSamples), center1->getProcValue (numSamples),
                                 pan1->getProcValue (numSamples), rotation->getProcValue (numSamples),
                                 pan2->getProcValue (numSamples), center2->getProcValue (numSamples),
-								width2->getProcValue (numSamples), output->getProcValue (numSamples));
+                                width2->getProcValue (numSamples), output->getProcValue (numSamples));
 
             proc.process (workBuffer);
             pos++;
@@ -61,10 +61,10 @@ void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBu
     }
     else
     {
-		proc.setParameters (width1->getProcValue (numSamples), center1->getProcValue (numSamples),
-							pan1->getProcValue (numSamples), rotation->getProcValue (numSamples),
-							pan2->getProcValue (numSamples), center2->getProcValue (numSamples),
-							width2->getProcValue (numSamples), output->getProcValue (numSamples));
+        proc.setParameters (width1->getProcValue (numSamples), center1->getProcValue (numSamples),
+                            pan1->getProcValue (numSamples), rotation->getProcValue (numSamples),
+                            pan2->getProcValue (numSamples), center2->getProcValue (numSamples),
+                            width2->getProcValue (numSamples), output->getProcValue (numSamples));
 
         proc.process (buffer);
     }

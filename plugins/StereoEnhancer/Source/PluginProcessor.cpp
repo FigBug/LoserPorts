@@ -10,9 +10,9 @@ static juce::String percentTextFunction (const gin::Parameter&, float v)
 //==============================================================================
 AudioProcessor::AudioProcessor()
 {
-	widthLP     = addExtParam ("widthLP",    	"Width",    "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.5f, 0.1f, percentTextFunction);
-	freqHPFader = addExtParam ("freqHPFader",   "Freq HP",  "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.5f, 0.1f, percentTextFunction);
-	widthHP    	= addExtParam ("widthHP",  		"Width HP",	"", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.0f, 0.1f, percentTextFunction);
+    widthLP     = addExtParam ("widthLP",       "Width",    "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.5f, 0.1f, percentTextFunction);
+    freqHPFader = addExtParam ("freqHPFader",   "Freq HP",  "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.5f, 0.1f, percentTextFunction);
+    widthHP     = addExtParam ("widthHP",       "Width HP", "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.0f, 0.1f, percentTextFunction);
 }
 
 AudioProcessor::~AudioProcessor()
@@ -40,11 +40,11 @@ void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBu
     if (isSmoothing())
     {
         int pos = 0;
-        
+
         while (pos < numSamples)
         {
             auto workBuffer = gin::sliceBuffer (buffer, pos, 1);
-            
+
             proc.setParameters (widthLP->getProcValue (numSamples), freqHPFader->getProcValue (numSamples), widthHP->getProcValue (numSamples));
 
             proc.process (workBuffer);
@@ -53,7 +53,7 @@ void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBu
     }
     else
     {
-		proc.setParameters (widthLP->getProcValue (numSamples), freqHPFader->getProcValue (numSamples), widthHP->getProcValue (numSamples));
+        proc.setParameters (widthLP->getProcValue (numSamples), freqHPFader->getProcValue (numSamples), widthHP->getProcValue (numSamples));
 
         proc.process (buffer);
     }

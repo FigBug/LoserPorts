@@ -10,11 +10,11 @@ AudioProcessorEditor::AudioProcessorEditor (AudioProcessor& p)
     for (auto pp : p.getPluginParameters())
     {
         auto pc = new gin::Knob (pp);
-        
+
         addAndMakeVisible (pc);
         controls.add (pc);
     }
-    
+
     setGridSize (7, 1);
 }
 
@@ -27,7 +27,7 @@ void AudioProcessorEditor::resized()
 {
     gin::ProcessorEditor::resized();
 
-	auto x = 2;
-	for (auto pp : proc.getPluginParameters())
-		componentForParam (*pp)->setBounds (getGridArea (x++, 0));
+    auto x = 2;
+    for (auto pp : proc.getPluginParameters())
+        componentForParam (*pp)->setBounds (getGridArea (x++, 0));
 }
