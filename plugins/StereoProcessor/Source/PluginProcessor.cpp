@@ -10,13 +10,14 @@ static juce::String percentTextFunction (const gin::Parameter&, float v)
 //==============================================================================
 AudioProcessor::AudioProcessor()
 {
-    room        = addExtParam ("room",      "Room",     "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.3f, 0.0f, percentTextFunction);
-    damp        = addExtParam ("damp",      "Damp",     "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.6f, 0.1f, percentTextFunction);
-    preDelay    = addExtParam ("predelay",  "PreDelay", "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.3f, 0.0f, percentTextFunction);
-    lp          = addExtParam ("lp",        "LP",       "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.9f, 0.1f, percentTextFunction);
-    hp          = addExtParam ("hp",        "HP",       "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.1f, 0.1f, percentTextFunction);
-    wet         = addExtParam ("wet",       "Wet",      "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.4f, 0.1f, percentTextFunction);
-    dry         = addExtParam ("dry",       "Dry",      "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.3f, 0.1f, percentTextFunction);
+    width1      = addExtParam ("width1",    "Width",     "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
+    center1     = addExtParam ("center1",   "Center",    "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
+    pan1    	= addExtParam ("pan1",  	"Pan", 		 "", "%",   {  -1.0f,   1.0f, 0.0f, 1.0f}, 0.0f, 0.1f, percentTextFunction);
+    rotation    = addExtParam ("rotation",  "Rotation",  "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
+    pan2        = addExtParam ("pan2",      "Pan",       "", "%",   {  -1.0f,   1.0f, 0.0f, 1.0f}, 0.0f, 0.1f, percentTextFunction);
+    center2     = addExtParam ("center2",   "Center",    "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
+    width2      = addExtParam ("width2",    "Width",     "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
+	output		= addExtParam ("output",    "Output",    "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.5f, 0.1f, percentTextFunction);
 }
 
 AudioProcessor::~AudioProcessor()
@@ -27,8 +28,6 @@ AudioProcessor::~AudioProcessor()
 void AudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     gin::Processor::prepareToPlay (sampleRate, samplesPerBlock);
-    
-    reverb.setSampleRate (float (sampleRate));
 }
 
 void AudioProcessor::reset()
@@ -51,23 +50,23 @@ void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBu
         {
             auto workBuffer = gin::sliceBuffer (buffer, pos, 1);
             
-            reverb.setParameters (room->getProcValue (numSamples), damp->getProcValue (numSamples),
-                                  preDelay->getProcValue (numSamples), lp->getProcValue (numSamples),
-                                  hp->getProcValue (numSamples), wet->getProcValue (numSamples),
-                                  dry->getProcValue (numSamples));
+            proc.setParameters (width1->getProcValue (numSamples), center1->getProcValue (numSamples),
+                                pan1->getProcValue (numSamples), rotation->getProcValue (numSamples),
+                                pan2->getProcValue (numSamples), center2->getProcValue (numSamples),
+								width2->getProcValue (numSamples), output->getProcValue (numSamples));
 
-            reverb.process (workBuffer);
+            proc.process (workBuffer);
             pos++;
         }
     }
     else
     {
-        reverb.setParameters (room->getProcValue (numSamples), damp->getProcValue (numSamples),
-                              preDelay->getProcValue (numSamples), lp->getProcValue (numSamples),
-                              hp->getProcValue (numSamples), wet->getProcValue (numSamples),
-                              dry->getProcValue (numSamples));
-        
-        reverb.process (buffer);
+		proc.setParameters (width1->getProcValue (numSamples), center1->getProcValue (numSamples),
+							pan1->getProcValue (numSamples), rotation->getProcValue (numSamples),
+							pan2->getProcValue (numSamples), center2->getProcValue (numSamples),
+							width2->getProcValue (numSamples), output->getProcValue (numSamples));
+
+        proc.process (buffer);
     }
 }
 

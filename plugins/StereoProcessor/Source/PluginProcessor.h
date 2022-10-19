@@ -25,11 +25,11 @@ public:
     bool hasEditor() const override;
 
     //==============================================================================
-    gin::Parameter::Ptr room, damp, preDelay, lp, hp, wet, dry;
+    gin::Parameter::Ptr width1, center1, pan1, rotation, pan2, center2, width2, output;
 
 private:
     
-    gin::SimpleVerb reverb;
+    gin::StereoProcessor proc;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioProcessor)
