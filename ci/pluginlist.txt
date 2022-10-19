@@ -1,2 +1,3 @@
+StereoEnhancer
 StereoProcessor
 SimpleVerb
