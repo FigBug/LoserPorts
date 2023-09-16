@@ -60,7 +60,6 @@ set_target_properties(StereoProcessor PROPERTIES
 
 target_link_libraries(StereoProcessor
   PRIVATE
-    dRowAudio
     gin
     gin_dsp
     gin_graphics
