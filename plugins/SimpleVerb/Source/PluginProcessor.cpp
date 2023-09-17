@@ -9,6 +9,7 @@ static juce::String percentTextFunction (const gin::Parameter&, float v)
 
 //==============================================================================
 AudioProcessor::AudioProcessor()
+    : gin::Processor (false, gin::ProcessorOptions().withAdditionalCredits ({"Michael \"LOSER\" Gruhn"}))
 {
     room        = addExtParam ("room",      "Room",     "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.3f, 0.0f, percentTextFunction);
     damp        = addExtParam ("damp",      "Damp",     "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.6f, 0.1f, percentTextFunction);
@@ -17,6 +18,8 @@ AudioProcessor::AudioProcessor()
     hp          = addExtParam ("hp",        "HP",       "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.1f, 0.1f, percentTextFunction);
     wet         = addExtParam ("wet",       "Wet",      "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.4f, 0.1f, percentTextFunction);
     dry         = addExtParam ("dry",       "Dry",      "", "%",   {   0.0f,   1.0f, 0.0f, 1.0f}, 0.3f, 0.1f, percentTextFunction);
+    
+    init();
 }
 
 AudioProcessor::~AudioProcessor()

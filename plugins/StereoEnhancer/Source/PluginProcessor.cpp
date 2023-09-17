@@ -9,10 +9,13 @@ static juce::String percentTextFunction (const gin::Parameter&, float v)
 
 //==============================================================================
 AudioProcessor::AudioProcessor()
+    : gin::Processor (false, gin::ProcessorOptions().withAdditionalCredits ({"Michael \"LOSER\" Gruhn"}))
 {
     widthLP     = addExtParam ("widthLP",       "Width",    "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.5f, 0.1f, percentTextFunction);
     freqHPFader = addExtParam ("freqHPFader",   "Freq HP",  "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.5f, 0.1f, percentTextFunction);
     widthHP     = addExtParam ("widthHP",       "Width HP", "", "%",   { 0.0f, 1.0f, 0.0f, 1.0f }, 0.0f, 0.1f, percentTextFunction);
+    
+    init();
 }
 
 AudioProcessor::~AudioProcessor()

@@ -5,8 +5,6 @@
 AudioProcessorEditor::AudioProcessorEditor (AudioProcessor& p)
     : gin::ProcessorEditor (p), proc (p)
 {
-    extraProgrammer = "Michael \"LOSER\" Gruhn";
-
     for (auto pp : p.getPluginParameters())
     {
         auto pc = new gin::Knob (pp);

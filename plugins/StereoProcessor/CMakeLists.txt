@@ -40,6 +40,7 @@ target_compile_definitions(StereoProcessor
     JUCE_JACK=1
     JUCE_REPORT_APP_USAGE=0
     JUCE_DISPLAY_SPLASH_SCREEN=0
+    DONT_SET_USING_JUCE_NAMESPACE=1
     
     JucePlugin_MaxNumInputChannels=4
     JucePlugin_MaxNumOutputChannels=2
