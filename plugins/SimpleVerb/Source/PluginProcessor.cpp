@@ -54,10 +54,10 @@ void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBu
         {
             auto workBuffer = gin::sliceBuffer (buffer, pos, 1);
             
-            reverb.setParameters (room->getProcValue (numSamples), damp->getProcValue (numSamples),
-                                  preDelay->getProcValue (numSamples), lp->getProcValue (numSamples),
-                                  hp->getProcValue (numSamples), wet->getProcValue (numSamples),
-                                  dry->getProcValue (numSamples));
+            reverb.setParameters (room->getProcValue (1), damp->getProcValue (1),
+                                  preDelay->getProcValue (1), lp->getProcValue (1),
+                                  hp->getProcValue (1), wet->getProcValue (1),
+                                  dry->getProcValue (1));
 
             reverb.process (workBuffer);
             pos++;

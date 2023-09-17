@@ -48,7 +48,7 @@ void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBu
         {
             auto workBuffer = gin::sliceBuffer (buffer, pos, 1);
 
-            proc.setParameters (widthLP->getProcValue (numSamples), freqHPFader->getProcValue (numSamples), widthHP->getProcValue (numSamples));
+            proc.setParameters (widthLP->getProcValue (1), freqHPFader->getProcValue (1), widthHP->getProcValue (1));
 
             proc.process (workBuffer);
             pos++;

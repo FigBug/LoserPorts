@@ -53,10 +53,10 @@ void AudioProcessor::processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBu
         {
             auto workBuffer = gin::sliceBuffer (buffer, pos, 1);
 
-            proc.setParameters (width1->getProcValue (numSamples), center1->getProcValue (numSamples),
-                                pan1->getProcValue (numSamples), rotation->getProcValue (numSamples),
-                                pan2->getProcValue (numSamples), center2->getProcValue (numSamples),
-                                width2->getProcValue (numSamples), output->getProcValue (numSamples));
+            proc.setParameters (width1->getProcValue (1), center1->getProcValue (1),
+                                pan1->getProcValue (1), rotation->getProcValue (1),
+                                pan2->getProcValue (1), center2->getProcValue (1),
+                                width2->getProcValue (1), output->getProcValue (1));
 
             proc.process (workBuffer);
             pos++;
