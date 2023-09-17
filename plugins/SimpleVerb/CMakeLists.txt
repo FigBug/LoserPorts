@@ -86,3 +86,12 @@ target_link_libraries(SimpleVerb
     juce::juce_recommended_lto_flags
     juce::juce_recommended_warning_flags
 )
+
+if (APPLE)
+	set_target_properties("juce_vst3_helper" PROPERTIES XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO)
+  foreach(t ${FORMATS} "Assets" "All" "")
+		set_target_properties(${tgt} PROPERTIES
+			XCODE_ATTRIBUTE_CLANG_LINK_OBJC_RUNTIME NO
+			XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH[variant=Debug] "YES")
+  endforeach()
+endif()     
