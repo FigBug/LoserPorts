@@ -63,6 +63,7 @@ target_link_libraries(StereoEnhancer
   PRIVATE
     gin
     gin_dsp
+    gin_simd
     gin_graphics
     gin_gui
     gin_plugin
