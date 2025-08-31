@@ -24,8 +24,8 @@ jobs:
         env:
           APIKEY: ${{ secrets.APIKEY }}
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: Binaries
+          name: Binaries Linux
           path: ci/bin/*.zip
           retention-days: 30
